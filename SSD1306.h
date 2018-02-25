@@ -170,6 +170,8 @@ class SSD1306 : public Adafruit_GFX {
   
   private:
   
+	#define USE_WIRE_DELAY
+  
 	#ifdef _WIREBASE_H_
 	WireBase* wire;
 	#else

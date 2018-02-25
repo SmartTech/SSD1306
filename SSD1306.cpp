@@ -362,6 +362,9 @@ void SSD1306::ssd1306_command(uint8_t c) {
     wire->write(control);
     wire->write(c);
     wire->endTransmission();
+	#ifdef USE_WIRE_DELAY
+    delay(1);
+    #endif
   }
 }
 
@@ -476,6 +479,9 @@ void SSD1306::ssd1306_data(uint8_t c) {
     wire->write(control);
     wire->write(c);
     wire->endTransmission();
+	#ifdef USE_WIRE_DELAY
+    delay(1);
+    #endif
   }
 }
 
@@ -523,6 +529,9 @@ void SSD1306::display(void) {
       }
       i--;
       wire->endTransmission();
+	  #ifdef USE_WIRE_DELAY
+      delay(1);
+      #endif
     }
   }
 }
