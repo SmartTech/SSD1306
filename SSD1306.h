@@ -144,6 +144,8 @@ class SSD1306 : public Adafruit_GFX {
     SSD1306(int8_t RST);
 	#ifdef _WIREBASE_H_
     SSD1306(WireBase* _wire, int8_t RST = -1);
+	#else
+	SSD1306(TwoWire* _wire, int8_t RST = -1);
     #endif
     
     void begin(uint8_t switchvcc = SSD1306_SWITCHCAPVCC, uint8_t i2caddr = SSD1306_I2C_ADDRESS, bool reset=false);
@@ -182,7 +184,7 @@ class SSD1306 : public Adafruit_GFX {
     void fastSPIwrite(uint8_t c);
     
     boolean hwSPI;
-    volatile uint32 *mosiport, *clkport, *csport, *dcport;
+    volatile uint32_t *mosiport, *clkport, *csport, *dcport;
     uint32_t  mosipinmask, clkpinmask, cspinmask, dcpinmask;
     
     inline void drawFastVLineInternal(int16_t x, int16_t y, int16_t h, uint16_t color) __attribute__((always_inline));

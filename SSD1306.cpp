@@ -147,11 +147,19 @@ SSD1306::SSD1306(int8_t DC, int8_t RST, int8_t CS) :
 {
 }
 
+#ifdef _WIREBASE_H_
 SSD1306::SSD1306(WireBase* _wire, int8_t RST) :
 	wire(_wire), rst(RST), sclk(-1), dc(-1), cs(-1), sid(-1),
 	Adafruit_GFX(SSD1306_LCDWIDTH, SSD1306_LCDHEIGHT)
 {
 }
+#else
+SSD1306::SSD1306(TwoWire* _wire, int8_t RST) :
+	wire(_wire), rst(RST), sclk(-1), dc(-1), cs(-1), sid(-1),
+	Adafruit_GFX(SSD1306_LCDWIDTH, SSD1306_LCDHEIGHT)
+{
+}
+#endif
 
 SSD1306::SSD1306(int8_t RST) :
 	SSD1306(&Wire, RST)
