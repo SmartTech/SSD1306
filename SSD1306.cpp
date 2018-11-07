@@ -171,7 +171,7 @@ SSD1306::SSD1306() :
 {
 }
 
-void SSD1306::begin(uint8_t vccstate, uint8_t i2caddr, bool reset) {
+bool SSD1306::begin(uint8_t vccstate, uint8_t i2caddr, bool reset) {
   _vccstate = vccstate;
   _i2caddr = i2caddr;
 
@@ -227,6 +227,9 @@ void SSD1306::begin(uint8_t vccstate, uint8_t i2caddr, bool reset) {
     digitalWrite(rst, HIGH);
     // turn on VCC (9V?)
   }
+  
+    wire->beginTransmission(_i2caddr);
+    if(wire->endTransmission() != 0) return false;
 
    #if defined SSD1306_128_32
     // Init sequence for 128x32 OLED module
@@ -337,6 +340,8 @@ void SSD1306::begin(uint8_t vccstate, uint8_t i2caddr, bool reset) {
   #endif
 
   ssd1306_command(SSD1306_DISPLAYON);//--turn on oled panel
+  
+  return true;
 }
 
 

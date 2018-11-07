@@ -148,7 +148,7 @@ class SSD1306 : public Adafruit_GFX {
 	SSD1306(TwoWire* _wire, int8_t RST = -1);
     #endif
     
-    void begin(uint8_t switchvcc = SSD1306_SWITCHCAPVCC, uint8_t i2caddr = SSD1306_I2C_ADDRESS, bool reset=false);
+    bool begin(uint8_t switchvcc = SSD1306_SWITCHCAPVCC, uint8_t i2caddr = SSD1306_I2C_ADDRESS, bool reset=false);
     void ssd1306_command(uint8_t c);
     void ssd1306_data(uint8_t c);
     
